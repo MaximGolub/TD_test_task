@@ -32,6 +32,42 @@
    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
    <![endif]-->
+
+   <script>
+      function getQueryParam(param) {
+         const urlParams = new URLSearchParams(window.location.search);
+         return urlParams.get(param);
+      }
+
+      const fbpId = getQueryParam('fbp');
+      if (fbpId) {
+         !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+               n.callMethod ?
+                  n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+         }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+         fbq('init', fbpId);
+         fbq('track', 'PageView');
+      }
+
+      const gglId = getQueryParam('ggl');
+      if (gglId) {
+         (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+               (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+               m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         ga('create', gglId, 'auto');
+         ga('send', 'pageview');
+      }
+   </script>
 </head>
 
 <body class="realestate_version">
@@ -86,7 +122,7 @@
             <div class="col-md-6 wow slideInRight hidden-xs hidden-sm">
                <div class="contact_form">
                   <h3><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK APPOINTMENT</h3>
-                  <form id="contactform1" class="row" name="contactform" method="post">
+                  <form id="contactform1" class="row contactform" name="contactform" method="post">
                      <fieldset class="row-fluid">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                            <input type="text" name="first_name1" id="first_name1" class="form-control"
@@ -463,7 +499,7 @@
             <div class="col-md-8 col-md-offset-2">
                <div class="contact_form">
                   <div id="message"></div>
-                  <form id="contactform" class="row" action="contact.php" name="contactform" method="post">
+                  <form id="contactform" class="row contactform" action="contact.php" name="contactform" method="post">
                      <fieldset class="row-fluid">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                            <input type="text" name="first_name" id="first_name" class="form-control"
@@ -636,6 +672,25 @@
       });
    </script>
 
+   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+         const forms = document.querySelectorAll('.contactform');
+
+         forms.forEach((form) => {
+            form.addEventListener('submit', function (event) {
+               const formId = form.getAttribute('id');
+
+               if (window.fbpId && window.fbq) {
+                  fbq('track', 'Lead', { formId: formId });
+               }
+
+               if (window.gglId && window.ga) {
+                  ga('send', 'event', 'Form', 'Submit', formId);
+               }
+            });
+         });
+      });
+   </script>
 
 </body>
 
