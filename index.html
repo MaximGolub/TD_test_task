@@ -120,27 +120,30 @@
             <div class="col-md-6 wow slideInRight hidden-xs hidden-sm">
                <div class="contact_form">
                   <h3><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK APPOINTMENT</h3>
+                  <div class="response-message" id="response1"></div>
                   <form id="contactform1" class="row contactform" name="contactform" method="post">
                      <fieldset class="row-fluid">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                           <input type="text" name="first_name1" id="first_name1" class="form-control"
-                              placeholder="First Name">
+                           <input type="text" name="first_name" id="first_name1" class="form-control"
+                              placeholder="First Name" minlength="3" maxlength="100" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                           <input type="text" name="last_name1" id="last_name1" class="form-control"
-                              placeholder="Last Name">
+                           <input type="text" name="last_name" id="last_name1" class="form-control"
+                              placeholder="Last Name" minlength="3" maxlength="100" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                           <input type="email" name="email1" id="email1" class="form-control" placeholder="Your Email">
+                           <input type="email" name="email" id="email1" class="form-control" placeholder="Your Email"
+                              minlength="3" maxlength="100" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                           <input type="text" name="phone1" id="phone1" class="form-control" placeholder="Your Phone">
+                           <input type="tel" name="phone" id="phone1" class="form-control" placeholder="Your Phone"
+                              minlength="5" maxlength="15" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                            <label class="sr-only">Select Time</label>
-                           <select name="select_service1" id="select_service1" class="selectpicker form-control"
+                           <select name="select_service" id="select_service1" class="selectpicker form-control"
                               data-style="btn-white">
-                              <option value="selecttime">Select Time</option>
+                              <option value="" selected disabled>Select Time</option>
                               <option value="Weekdays">Weekdays</option>
                               <option value="Weekend">Weekend</option>
                            </select>
@@ -490,28 +493,30 @@
          <div class="row">
             <div class="col-md-8 col-md-offset-2">
                <div class="contact_form">
-                  <div id="message"></div>
-                  <form id="contactform" class="row contactform" action="contact.php" name="contactform" method="post">
+                  <div class="response-message" id="response2"></div>
+                  <form id="contactform2" class="row contactform" name="contactform" method="post">
                      <fieldset class="row-fluid">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                            <input type="text" name="first_name" id="first_name" class="form-control"
-                              placeholder="First Name">
+                              placeholder="First Name" minlength="3" maxlength="100" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                            <input type="text" name="last_name" id="last_name" class="form-control"
-                              placeholder="Last Name">
+                              placeholder="Last Name" minlength="3" maxlength="100" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                           <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                           <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"
+                              minlength="3" maxlength="100" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                           <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
+                           <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your Phone"
+                              minlength="5" maxlength="15" required>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                            <label class="sr-only">Select Time</label>
                            <select name="select_service" id="select_service" class="selectpicker form-control"
                               data-style="btn-white">
-                              <option value="selecttime">Select Time</option>
+                              <option value="" selected disabled>Select Time</option>
                               <option value="Weekdays">Weekdays</option>
                               <option value="Weekend">Weekend</option>
                            </select>
@@ -654,6 +659,8 @@
    <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script> -->
    <!-- MAP & CONTACT -->
    <!-- <script src="js/map.js"></script> -->
+   <script src="js/send_form.js"></script>
+   <script src="js/phones_validate.js"></script>
 
    <script>
       document.addEventListener('DOMContentLoaded', function () {
