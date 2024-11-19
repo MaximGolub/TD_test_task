@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'db.php';
 header('Content-Type: application/json');
 
@@ -10,6 +11,18 @@ function logRequest($message, $logFile) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $csrfToken = $_POST['csrf_token'] ?? '';
+    $storedToken = $_COOKIE['csrf_token'] ?? '';
+
+    if ($csrfToken !== $storedToken) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'CSRF validation failed!',
+        ]);
+        exit;
+    } 
+
     $first_name = $_POST['first_name'] ?? '';
     $last_name = $_POST['last_name'] ?? '';
     $email = $_POST['email'] ?? '';

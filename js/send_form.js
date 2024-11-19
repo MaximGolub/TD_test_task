@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			const formData = new FormData(form);
 
+			const csrfInput = document.querySelector('input[name="csrf_token"]');
+			if (csrfInput) {
+				formData.append("csrf_token", csrfInput.value);
+			} else {
+				console.error("CSRF token input not found!");
+				return;
+			}
+
 			fetch(apiUrl, {
 				method: "POST",
 				body: formData,
